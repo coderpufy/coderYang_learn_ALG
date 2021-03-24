@@ -13,6 +13,8 @@ class PriorityQueue {
     enqueue(element, priority) {
         // 1.根据传入的元素, 创建新的QueueElement实例
         const queueElement = new QueueElement(element, priority)
+        // 也可以直接定义对象,不需要定义类  但还是建议定义类 进行实例化
+        // const queueElement = {element, priority}
         if(this.isEmpty()) {
             this.items.push(queueElement)
         } else {
@@ -53,12 +55,12 @@ class PriorityQueue {
 console.log(PriorityQueue.prototype)
 const queue = new PriorityQueue();
 queue.enqueue(1, 10)
-// queue.enqueue(2, 22)
-// queue.enqueue(3, 5)
-// queue.enqueue(4, 1)
-// queue.enqueue(5, 10)
-// queue.dequeue()
-// console.log(queue.front())
+queue.enqueue(2, 22)
+queue.enqueue(3, 5)
+queue.enqueue(4, 1)
+queue.enqueue(5, 10)
+queue.dequeue()
+console.log(queue.front())
 
 console.log(queue.show().forEach(item => {
     console.log(item.element)
