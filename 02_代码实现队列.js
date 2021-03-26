@@ -1,33 +1,45 @@
-function PriorityQueue() {
-    var items = [];
-    // 追加方法
-    this.enqueue = function(i) {
-        items.push(i)
+class Queue {
+    constructor() {
+      this.items = []
     }
-    // 删除方法
-    this.dequeue = function() {
-        items.unshift()
+    // 入队列
+    enqueue(element) {
+      this.items.push(element)
     }
-    // 查看最前面的
-    this.front = function() {
-        return items[0]
+    // 出队列
+    dequeue() {
+      return this.items.shift()
     }
-    this.size = function() {
-        return items.length
+    // 将要出队列的数据
+    front() {
+      return this.items[0]
     }
-    this.show = function() {
-        return items
+    // 队列是否为空
+    isEmpty() {
+      return this.items.length === 0
     }
-    // 是否为空
-    this.isEmpty = function() {
-        return items.length === 0
+    // 队列长度
+    size() {
+      return this.items.length
     }
-}
-
-const queue = new PriorityQueue();
-queue.enqueue(1)
-queue.enqueue(2)
-queue.enqueue(3)
-queue.enqueue(4)
-queue.enqueue(5)
-console.log(queue.show())
+  }
+  function game(personList = [], num) {
+    // 创建一个队列
+    const queue = new Queue()
+    // 将人插入队列
+    for (let i = 0; i < personList.length; i ++) {
+      queue.enqueue(personList[i])
+    }
+    // 循环找到那些淘汰的人，并将其淘汰
+    while(queue.size() > 1) {
+      for (let i = 0; i < num; i ++) {
+        queue.enqueue(queue.dequeue())
+      }
+      queue.dequeue()
+    }
+    const endName = queue.dequeue()
+    return personList.indexOf(endName)
+    
+  }
+  const arr = ['夏明', '夏红', '瞎子', 'pufy', 'qbl', 'lxy', 'hl']
+  console.log(game(arr, 5))

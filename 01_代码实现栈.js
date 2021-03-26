@@ -1,35 +1,38 @@
-function Stack() {
-    var item = [];
-    // 入栈
-    this.push = function(i) {
-        item.push(i)
+class Stack {
+    // 构造函数，定义变量items
+    constructor() {
+      this.items = []
     }
-    // 出栈
-    this.pop = function() {
-        console.log(this.peek())
-        item.pop()
+       // 压栈操作
+    push(item) {
+      this.items.push(item)
     }
-    // 返回即将出栈的数据
-    this.peek = function() {
-        return item[item.length - 1]
+    // 出栈操作
+    pop() {
+      this.items.pop()
     }
-    // 返回栈的长度
-    this.size = function() {
-        return item.length
+    // 返回最上层栈
+    peek() {
+         return this.items[0]
     }
-}
-
-const stack = new Stack()
-stack.push(6)
-stack.push(5)
-stack.pop()
-stack.push(4)
-stack.pop()
-stack.push(3)
-stack.pop()
-stack.pop()
-stack.push(2)
-stack.push(1)
-stack.pop()
-stack.pop()
-
+    // 判断栈是不是空的
+    isEmpty() {
+      return this.items.length === 0
+    }
+    // 清空栈
+    clear() {
+      this.items = []
+    }
+    // 栈长度
+    size() {
+      return this.items.length
+    }
+  }
+  
+  const stack = new Stack()
+  stack.push(6)
+  console.log(stack.peek())
+  console.log(stack.size())
+  console.log(stack.pop())
+  console.log(stack.size())
+  console.log(stack.peek())
